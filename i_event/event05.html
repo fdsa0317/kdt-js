@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>체크박스 이벤트</title>
+</head>
+<body>
+    <label><input type="checkbox" value="선택1">선택1</label>
+    <label><input type="checkbox" value="선택2">선택2</label>
+    <label><input type="checkbox" value="선택3">선택3</label>
+    <p id="result"></p>
+</body>
+<script>
+    // 3개의 checkbox 중 선택 시 해당 값을 가져와서 p태그에 출력하기
+    // 체크박스가 해제되면 해당 p태그 안에 선택된 값도 삭제하기
+    const checkboxes = document.querySelectorAll("input[type='checkbox']")
+    const p = document.querySelector("p")
+
+    NodeList.prototype.find = Array.prototype.find
+
+    checkboxes.forEach((checkbox, i) => {
+        checkbox.addEventListener("click", (e) => {
+            const target = e.target
+            
+            if(e.target.checked){
+                const strong = document.createElement("strong")
+                strong.innerText = target.value
+                strong.style.marginRight = "4px"
+                p.appendChild(strong)
+            }else {
+                const strongs = document.querySelectorAll("#result strong")
+                const strong = strongs.find((strong) => strong.innerText === target.value)
+                strong.remove()
+            }
+        })
+    })
+
+</script>
+</html>

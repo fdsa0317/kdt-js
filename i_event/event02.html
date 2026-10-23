@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>클릭 이벤트(유효성 검사)</title>
+</head>
+<body>
+    <form action="데이터받을주소">
+        <div>
+            <span>아이디</span>
+            <input id="id" type="text" placeholder="아이디 입력" />
+            <p id="id-result"></p>
+        </div>
+        <div>
+            <span>비밀번호</span>
+            <input id="password" placeholder="비밀번호 입력" />
+            <p id="password-result"></p>
+        </div>
+        <!-- button type submit(default) -->
+        <button type="button" id="button">완료</button>
+    </form>
+</body>
+<script>
+    const id = document.querySelector("#id")
+    const password = document.querySelector("#password")
+    const button = document.querySelector("#button")
+    const idResult = document.querySelector("#id-result")
+    const passwordResult = document.querySelector("#password-result")
+    const form = document.querySelector("form")
+
+    button.addEventListener("click", (e) => {
+        
+        // 예외 상황
+        // early return
+        if(!id.value){
+            idResult.innerText = "잘 입력하세요. 이 자식아!"
+            idResult.style.color = "red"
+            return
+        }
+
+        idResult.innerText = "참 잘했어요^_^"
+        idResult.style.color = "blue"
+
+        if(!password.value){
+            passwordResult.innerHTML = "비밀번호를 만드세요. 이 자식아!"
+            passwordResult.style.color = "red"
+            return
+        }
+        passwordResult.innerHTML = "자~~~알하셨어요"
+        passwordResult.style.color = "blue"
+
+        // form태그가 가지고있는 submit 메서드는 데이터를 전송하는 메서드
+        form.submit()
+    })
+
+</script>
+</html>
