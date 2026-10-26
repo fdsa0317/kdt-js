@@ -33,4 +33,45 @@
         </div>
     </form>
 </body>
+<script>
+    const all = document.querySelector(".all")
+    const terms = document.querySelectorAll(".term")
+
+    NodeList.prototype.filter = Array.prototype.filter
+
+    all.addEventListener("click", (e) => {
+        terms.forEach((term) => {
+            term.checked = all.checked
+        })
+    })
+    
+    terms.forEach((term) => {
+        term.addEventListener("click", () => {
+            const checkedTerms = terms.filter((term) => term.checked)
+            all.checked = checkedTerms.length === terms.length
+        })
+    })
+</script>
 </html>
+
+
+<!-- 쌤 풀이 -->
+<!-- <script>
+    const all = document.querySelector(".all")
+    const terms = document.querySelectorAll(".term")
+
+    NodeList.prototype.map = Array.prototype.map
+
+    all.addEventListener("click", (e) => {
+        terms.forEach((term) => {
+            term.checked = all.checked
+        })
+    })
+
+    terms.forEach((term) => {
+        term.addEventListener("click", (e) => {
+            all.checked = terms.map((term) => term.checked).filter((checked) => checked).length === 3
+        })
+    })
+    
+</script> -->
